@@ -8,7 +8,31 @@ async function mostrarDatos(){
     let res = await fetch('api/pista/pistas');
     let data = await res.json();
 
-    document.getElementById("idPista").innerHTML = data.titulo;
+
+    let html = document.getElementById("idPista");
+
+    html.innerHTML =         `
+    <tr>
+        <th> Id </th>
+        <th> Titulo </th>
+        <th> Duracion </th>
+        <th> Interprete </th>
+        <th> Fecha </th>
+    </tr>
+`
+
+    for (let pista of data.pistas) {
+        html.innerHTML +=
+        `
+            <tr id="${pista.id}">
+                <td> ${pista.id} </td>
+                <td> ${pista.titulo} </td>
+                <td> ${pista.duracion} </td>
+                <td> ${pista.interprete} </td>
+                <td> ${pista.fecha} </td>
+            </tr>
+        `
+    }
     console.log(data.pistas);
 }
 
@@ -17,7 +41,7 @@ async function mostrarDatos(){
 async function crearPista(){
 
     let datos = {
-            "identificador": document.getElementById("identificador").value,
+            "id": document.getElementById("identificador").value,
             "titulo": document.getElementById("titulo").value,
             "duracion": document.getElementById("duracion").value,
             "interprete": document.getElementById("interprete").value,
@@ -34,3 +58,4 @@ async function crearPista(){
     console.log(data);
     
 }
+

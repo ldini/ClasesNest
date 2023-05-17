@@ -1,5 +1,6 @@
-import {  Body, Controller, Get, Post } from '@nestjs/common';
+import {  Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PistaService } from './pista.service';
+import { PistaEntity } from './pista.entity/pista.entity';
 
 @Controller('api/pista')
 export class PistaController {
@@ -12,8 +13,9 @@ export class PistaController {
     }
 
     @Post('crear')
-    crearPista(@Body() body):any{
-        return this.pistaService.crearPista(body);
+    crearPista(@Body() body:PistaEntity):any{
+        return this.pistaService.addPista(body);
     }
+
 
 }
