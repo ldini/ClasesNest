@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PistaEntity } from './pista.entity/pista.entity';
 import * as fs from 'fs'; 
+import { isUtf8 } from 'buffer';
 
 @Injectable()
 export class PistaService {
@@ -38,6 +39,26 @@ export class PistaService {
                     titulo: "Lista de Pistas",
                     pistas : this.cargarPistas()
                 };
+    }
+
+    // Eliminar una pista por ID
+
+    delete(id):string{
+        let txt:string = fs.readFileSync('abc.txt','utf8');
+        
+        let pistas = txt.split('\n').map(e=>e.replace('\r','')).map(e=>e.split(','));
+        
+        let listaPistas = [];
+
+        for (let index = 0; index < pistas.length; index++) {  
+            if(id != pistas[index][0]){       
+                let pista = new PistaEntity(pistas[index][0],pistas[index][1],pistas[index][2],pistas[index][3],pistas[index][4]) 
+                listaPistas.push(pista)
+            }
+        }
+
+        fs.writeFileSync('abc.txt',listaPistas.join('\n'));
+        return `Eliminado pista con id = ${id}`;
     }
 
    
