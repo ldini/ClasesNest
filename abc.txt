@@ -1,2 +1,6 @@
+2,Cancion Juan,23mn,Juan,2/2/2
 3,Cancion Juan,23mn,Juan,2/2/2
-6,Titulo 1,23min,Interprete 1,4/4/4
+4,Cancion Juan,23mn,Juan,2/2/2
+5,Cancion Juan,23mn,Juan,2/2/2
+6,Cancion Juan,23mn,Juan,2/2/2
+7,Cancion Juan,23mn,Juan,2/2/2

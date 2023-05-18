@@ -43,7 +43,7 @@ export class PistaService {
 
     // Eliminar una pista por ID
 
-    delete(id):string{
+    delete(id) : any{
         let txt:string = fs.readFileSync('abc.txt','utf8');
         
         let pistas = txt.split('\n').map(e=>e.replace('\r','')).map(e=>e.split(','));
@@ -58,7 +58,8 @@ export class PistaService {
         }
 
         fs.writeFileSync('abc.txt',listaPistas.join('\n'));
-        return `Eliminado pista con id = ${id}`;
+        
+        return {msj:"eliminado"};
     }
 
    

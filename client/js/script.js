@@ -18,6 +18,7 @@ async function mostrarDatos(){
         <th> Duracion </th>
         <th> Interprete </th>
         <th> Fecha </th>
+        <th> Borrar </th>
     </tr>
 `
 
@@ -30,10 +31,30 @@ async function mostrarDatos(){
                 <td> ${pista.duracion} </td>
                 <td> ${pista.interprete} </td>
                 <td> ${pista.fecha} </td>
+                <td> <button onClick="eliminarFila('${pista.id}')"> Borrar </button><td>
             </tr>
         `
     }
     console.log(data.pistas);
+}
+
+async function eliminarFila(id){
+
+    //Elimino del html la fila
+    const fila = document.getElementById(id);
+    const tabla = fila.parentNode;
+    tabla.removeChild(fila);
+
+
+    //Elimino un pista del archivo
+    res = await fetch(`api/pista/eliminar/${id}`,
+    {
+        method : 'DELETE',
+        headers : { 'Content-Type' : 'application/json' }
+    },
+    );
+    let data = await res.json();
+    console.log(data.msj);
 }
 
 
