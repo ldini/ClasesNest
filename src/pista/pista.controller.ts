@@ -17,5 +17,11 @@ export class PistaController {
         return this.pistaService.addPista(body);
     }
 
+    @Delete('eliminar/:id')
+    eliminarPista(@Param('id') id:string):string{
+        return this.pistaService.eliminarPista(id);      
+    }
+
+
 
 }

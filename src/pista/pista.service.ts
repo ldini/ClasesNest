@@ -40,5 +40,25 @@ export class PistaService {
                 };
     }
 
+    //eliminar pista por id
+    eliminarPista(id:string):string{
+        let txt:string = fs.readFileSync('abc.txt', 'utf8')
+        
+        let pistas = txt.split('\n').map(e=>e.replace('\r','')).map(e=>e.split(','));
+        
+        let listaPistas = [];
+
+        for(let i =0; i < pistas.length; i++) {
+            if(id != pistas[i][0]){
+            let pista = new PistaEntity(pistas[i][0],pistas[i][1],pistas[i][2],pistas[i][3],pistas[i][4]);
+            listaPistas.push(pista);
+            }
+        }
+        console.log(listaPistas);
+        fs.writeFileSync('abc.txt',listaPistas.join('\n'))
+
+        return `Eliminado pista con id = ${id}`
+    }
+
    
 }
