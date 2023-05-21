@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PistaEntity } from './pista.entity/pista.entity';
 import * as fs from 'fs'; 
+import { isUtf8 } from 'buffer';
 
 @Injectable()
 export class PistaService {
@@ -40,13 +41,16 @@ export class PistaService {
                 };
     }
 
+
     //eliminar pista por id
     eliminarPista(id:string):any{
         let txt:string = fs.readFileSync('abc.txt', 'utf8')
+
         
         let pistas = txt.split('\n').map(e=>e.replace('\r','')).map(e=>e.split(','));
         
         let listaPistas = [];
+
 
         for(let i =0; i < pistas.length; i++) {
             if(id != pistas[i][0]){
@@ -60,6 +64,7 @@ export class PistaService {
         return {
             "msj": "eliminado",
           };
+
     }
 
    
