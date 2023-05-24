@@ -41,25 +41,30 @@ export class PistaService {
                 };
     }
 
-    // Eliminar una pista por ID
 
-    delete(id) : any{
-        let txt:string = fs.readFileSync('abc.txt','utf8');
+    //eliminar pista por id
+    eliminarPista(id:string):any{
+        let txt:string = fs.readFileSync('abc.txt', 'utf8')
+
         
         let pistas = txt.split('\n').map(e=>e.replace('\r','')).map(e=>e.split(','));
         
         let listaPistas = [];
 
-        for (let index = 0; index < pistas.length; index++) {  
-            if(id != pistas[index][0]){       
-                let pista = new PistaEntity(pistas[index][0],pistas[index][1],pistas[index][2],pistas[index][3],pistas[index][4]) 
-                listaPistas.push(pista)
+
+        for(let i =0; i < pistas.length; i++) {
+            if(id != pistas[i][0]){
+            let pista = new PistaEntity(pistas[i][0],pistas[i][1],pistas[i][2],pistas[i][3],pistas[i][4]);
+            listaPistas.push(pista);
             }
         }
+        console.log(listaPistas);
+        fs.writeFileSync('abc.txt',listaPistas.join('\n'))
 
-        fs.writeFileSync('abc.txt',listaPistas.join('\n'));
-        
-        return {msj:"eliminado"};
+        return {
+            "msj": "eliminado",
+          };
+
     }
 
    
